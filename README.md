@@ -15,7 +15,7 @@
 - [x] The app should be written with React and Typescript To save time, use create-reaсt-app
 - [ ] Styling is not important. The app should only looks like in the picture and be accessible
 - [ ] Use one of components library or native elements to display controls, list and other elements
-- [ ] Data for Users module should be fetched from https://jsonplaceholder.typicode.com/users
+- [x] Data for Users module should be fetched from https://jsonplaceholder.typicode.com/users
 - [ ] Data for Tasks List module should be fetched from https://jsonplaceholder.typicode.com/todos
 - [ ] The provided API doesn't allow you to update data. To mark a task as completed send a request to, wait for response and then update local state of the app
 - [ ] The app should be available on Internet (to be developed in codesandbox.io, to be deployed to https://vercel.com/ or a similar platform)

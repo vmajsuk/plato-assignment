@@ -1,19 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useQuery } from "react-query";
-import { fetchUsers } from "./api";
+import { fetchTasks, fetchUsers } from "./api";
 
 function App() {
-  const { data, isLoading, error } = useQuery("users", fetchUsers);
+  const [userId, setUserId] = useState<number | undefined>();
+
+  const users = useQuery("users", fetchUsers);
+
+  const tasks = useQuery(["tasks", userId], () => fetchTasks({ userId }), {
+    enabled: !!userId,
+  });
+
+  useEffect(() => {
+    if (!userId && users.data?.length) setUserId(users.data[0].id);
+  }, [userId, users.data]);
 
   return (
     <div>
-      {isLoading && <div>Loading...</div>}
-      {error && <div>Error: {JSON.stringify(error)}</div>}
-      {data && (
+      {users.isLoading && <div>Loading...</div>}
+      {users.error && <div>Error: {JSON.stringify(users.error)}</div>}
+      {users.data && (
         <div>
-          {data.map((user) => (
-            <div key={user.id}>{user.name}</div>
+          {users.data.map((user) => (
+            <div key={user.id} onClick={() => setUserId(user.id)}>
+              {user.name}
+            </div>
+          ))}
+        </div>
+      )}
+      ==== TASKS ====
+      {tasks.isLoading && <div>Loading...</div>}
+      {tasks.error && <div>Error: {JSON.stringify(tasks.error)}</div>}
+      {tasks.data && (
+        <div>
+          {tasks.data.map((task) => (
+            <div key={task.id}>{task.title}</div>
           ))}
         </div>
       )}

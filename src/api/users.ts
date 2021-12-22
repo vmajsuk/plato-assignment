@@ -1,6 +1,6 @@
 import { client } from "./base";
 
-interface User {
+export interface User {
   id: number;
   name: string;
   username: string;
