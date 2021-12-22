@@ -1,5 +1,7 @@
 # Plato Assignment
 
+Link to the deployed version: https://plato-assignment.vercel.app/
+
 ## Requirements
 
 - [x] When I open a page, I see the list of the users and the tasks for the first user
