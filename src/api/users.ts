@@ -1,3 +1,4 @@
+import { useQuery } from "react-query";
 import { client } from "./base";
 
 export interface User {

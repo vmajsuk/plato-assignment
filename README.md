@@ -19,14 +19,38 @@
 - [x] Data for Users module should be fetched from https://jsonplaceholder.typicode.com/users
 - [x] Data for Tasks List module should be fetched from https://jsonplaceholder.typicode.com/todos
 - [x] The provided API doesn't allow you to update data. To mark a task as completed send a request to, wait for response and then update local state of the app
-- [ ] The app should be available on Internet (to be developed in codesandbox.io, to be deployed to https://vercel.com/ or a similar platform)
+- [x] The app should be available on Internet (to be developed in codesandbox.io, to be deployed to https://vercel.com/ or a similar platform)
 - [x] It is up to you what components to create. However, we ask you to create a component Task , to display one task, with the following contract:
   - [x] If task is not completed it must take only these properties: `title`, `isCompleted`, `onComplete`
   - [x] If task is completed it must take only these properties: `title`, `isCompleted`
-- [ ] The app should be developed like a production-ready application, but no need to implement everything perfectly. For example, you can cover only one component to show how you write tests and skip tests for the rest of the components.
-- [ ] Try not to spend more than 4 hours on this task
-- [ ] If there are things which you think should be done or improved, please leave a comment about them
+- [x] The app should be developed like a production-ready application, but no need to implement everything perfectly. For example, you can cover only one component to show how you write tests and skip tests for the rest of the components.
+- [x] Try not to spend more than 4 hours on this task
+- [x] If there are things which you think should be done or improved, please leave a comment about them
 
 ## Clarifications
 
-- [ ] Persist data so that task marked as completed is persisted between page reloads
+> Persist data so that task marked as completed is persisted between page reloads
+
+I decided to ignore this requirement I got through clarifications, because:
+
+- it was not the part of the original assignment
+- this requirement means that we need to build offline-first app that fetches initial state from api. This requires different approach to state management which would take quite some time; I decided to spend that time on code quality instead because the end goal is to showcase my coding skills
+
+> Try not to spend more than 4 hours on this task
+
+I spent ~3.5 hours, commits history is weird 'cause I had interviews in between coding
+
+> The app should be developed like a production-ready application, but no need to implement everything perfectly. For example, you can cover only one component to show how you write tests and skip tests for the rest of the components
+
+In production-ready application I would:
+
+- test `useTasks` completeTask logic. This would require mocking API requests and checking if task becomes completed after the function call
+- create stories for `~/components`, `~/features/Users/components` and test them with visual tests (screenshots)
+
+However I didn't do this in the test assignment because I don't think I have sufficient time.
+
+> If there are things which you think should be done or improved, please leave a comment about them
+
+I didn't handle loading and error states, because there's no design and guidelines for that. However, the checks are in place and any loading / error state can easily be added to the application.
+
+I also used `alert()` to show emulated errors from `completeTask`

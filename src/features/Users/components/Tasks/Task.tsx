@@ -1,11 +1,11 @@
 import { makeStyles } from "@mui/styles";
 import { Checkbox, ListItemIcon, ListItemText } from "@mui/material";
 import React from "react";
+
 import { cx } from "~/styles";
 
 // Styles
 const useStyles = makeStyles(() => ({
-  task: {},
   completed: {
     textDecoration: "line-through",
   },
