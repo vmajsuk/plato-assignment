@@ -8,7 +8,7 @@ export interface Task {
 }
 
 export interface TaskParams {
-  userId?: number;
+  userId?: string;
 }
 
 export async function fetchTasks(params?: TaskParams) {

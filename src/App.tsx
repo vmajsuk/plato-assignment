@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from "react";
-
+import React from "react";
 import { useQuery } from "react-query";
-import { fetchTasks, fetchUsers } from "./api";
+
+import { fetchUsers } from "./api";
+import { Route, Switch, Redirect, useHistory } from "react-router-dom";
+import { Tasks } from "./components/Tasks";
 
 function App() {
-  const [userId, setUserId] = useState<number | undefined>();
-
   const users = useQuery("users", fetchUsers);
-
-  const tasks = useQuery(["tasks", userId], () => fetchTasks({ userId }), {
-    enabled: !!userId,
-  });
-
-  useEffect(() => {
-    if (!userId && users.data?.length) setUserId(users.data[0].id);
-  }, [userId, users.data]);
+  const history = useHistory();
 
   return (
     <div>
@@ -23,22 +16,19 @@ function App() {
       {users.data && (
         <div>
           {users.data.map((user) => (
-            <div key={user.id} onClick={() => setUserId(user.id)}>
+            <div
+              key={user.id}
+              onClick={() => history.push(`/users/${user.id}`)}
+            >
               {user.name}
             </div>
           ))}
         </div>
       )}
-      ==== TASKS ====
-      {tasks.isLoading && <div>Loading...</div>}
-      {tasks.error && <div>Error: {JSON.stringify(tasks.error)}</div>}
-      {tasks.data && (
-        <div>
-          {tasks.data.map((task) => (
-            <div key={task.id}>{task.title}</div>
-          ))}
-        </div>
-      )}
+      <Switch>
+        <Route path="/users/:userId" component={Tasks} />
+        {users.data?.[0].id && <Redirect to={`/users/${users.data?.[0].id}`} />}
+      </Switch>
     </div>
   );
 }
