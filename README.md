@@ -36,7 +36,8 @@ Link to the deployed version: https://plato-assignment.vercel.app/
 I decided to ignore this requirement I got through clarifications, because:
 
 - it was not the part of the original assignment
-- this requirement means that we need to build offline-first app that fetches initial state from api. This requires different approach to state management which would take quite some time; I decided to spend that time on code quality instead because the end goal is to showcase my coding skills
+- fulfilling this requirement would need a different (offline-first) approach to state management, I wasn't sure on the time estimate for that so decided to focus on structure and code quality instead to showcase my coding skills
+- maybe that was a mistake, cause now when you check a task, change the user and then change the user back, your checked task becomes unchecked due to refetch and it looks silly :D
 
 > Try not to spend more than 4 hours on this task
 
@@ -47,7 +48,7 @@ I spent ~3.5 hours, commits history is weird 'cause I had interviews in between 
 In production-ready application I would:
 
 - test `useTasks` completeTask logic. This would require mocking API requests and checking if task becomes completed after the function call
-- create stories for `~/components`, `~/features/Users/components` and test them with visual tests (screenshots)
+- create stories for `~/components`, `~/features/Users/components` and test them with visual tests (screenshots) (actually, this is why I decided to go with containers + dumb components approach)
 
 However I didn't do this in the test assignment because I don't think I have sufficient time.
 
