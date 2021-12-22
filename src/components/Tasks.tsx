@@ -1,10 +1,11 @@
+import { List, CircularProgress, ListItem } from "@mui/material";
 import React from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { RouteComponentProps as RCP } from "react-router-dom";
 
 import * as api from "~/api";
 
-import { Task } from "../Task";
+import { Task } from "./Task";
 
 interface TasksParams {
   userId: string;
@@ -36,26 +37,25 @@ export const Tasks: React.FC<RCP<TasksParams>> = ({
     }
   };
 
+  if (tasks.isLoading) return <CircularProgress />;
+
+  if (tasks.error || !tasks.data) return <div>Error view</div>;
+
   return (
-    <div>
-      {tasks.isLoading && <div>Loading...</div>}
-      {tasks.error && <div>Error: {JSON.stringify(tasks.error)}</div>}
-      {tasks.data && (
-        <div>
-          {tasks.data.map((task) =>
-            task.completed ? (
-              <Task isCompleted key={task.id} title={task.title} />
-            ) : (
-              <Task
-                key={task.id}
-                isCompleted={false}
-                title={task.title}
-                onComplete={() => onCompleteTask(task.id)}
-              />
-            )
+    <List>
+      {tasks.data.map((task) => (
+        <ListItem key={task.id}>
+          {task.completed ? (
+            <Task isCompleted title={task.title} />
+          ) : (
+            <Task
+              isCompleted={false}
+              title={task.title}
+              onComplete={() => onCompleteTask(task.id)}
+            />
           )}
-        </div>
-      )}
-    </div>
+        </ListItem>
+      ))}
+    </List>
   );
 };

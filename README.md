@@ -6,16 +6,16 @@
 - [x] When I select a user, the tasks for the selected user is displayed on the right side.
 - [x] Each user has a separate page. That is, when I select the user with id 1 the page /users/1 opens
 - [x] Available tasks for each user must be loaded separately when we select a user.
-- [ ] A selected user must have an icon or specific styles
-- [ ] Each task must have a control to mark it as Completed
+- [x] A selected user must have an icon or specific styles
+- [x] Each task must have a control to mark it as Completed
 - [x] Once a task is marked as Completed this can't be changed.
-- [ ] A completed task must not have a control, only icon or specific styles
+- [x] A completed task must not have a control, only icon or specific styles
 
 ## Notes
 
 - [x] The app should be written with React and Typescript To save time, use create-reaсt-app
-- [ ] Styling is not important. The app should only looks like in the picture and be accessible
-- [ ] Use one of components library or native elements to display controls, list and other elements
+- [x] Styling is not important. The app should only looks like in the picture and be accessible
+- [x] Use one of components library or native elements to display controls, list and other elements
 - [x] Data for Users module should be fetched from https://jsonplaceholder.typicode.com/users
 - [x] Data for Tasks List module should be fetched from https://jsonplaceholder.typicode.com/todos
 - [x] The provided API doesn't allow you to update data. To mark a task as completed send a request to, wait for response and then update local state of the app
