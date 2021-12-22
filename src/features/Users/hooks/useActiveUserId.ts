@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 
 interface Params {
@@ -11,11 +11,14 @@ export function useActiveUserId(firstUserId?: number | undefined) {
   const userId =
     params.userId && !isNaN(+params.userId) ? +params.userId : undefined;
 
-  const setActiveUserId = (nextId: number) => history.push(`/users/${nextId}`);
+  const setActiveUserId = useCallback(
+    (nextId: number) => history.push(`/users/${nextId}`),
+    [history]
+  );
 
   useEffect(() => {
     if (firstUserId && !userId) setActiveUserId(firstUserId);
-  }, [userId, firstUserId]);
+  }, [userId, firstUserId, setActiveUserId]);
 
   return { activeUserId: userId, setActiveUserId };
 }
